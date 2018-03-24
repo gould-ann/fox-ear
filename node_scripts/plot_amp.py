@@ -111,7 +111,7 @@ for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
 	#not the best way sorry :D
 	#i think u did great :)
 	# print "amplitude is", amplitude, "and the freq is", frequency
-	if(amplitude > 0.5) and loud <= 0:
+	if(amplitude > 0.40) and loud <= 0:
 		print "a", loud
 		my_command = ("(curl -k \"http://www.unertech.com/fox_ears/format_to_json.php?node="+ node + "&time=" + str(time.time()) + "&amp=" + str(amplitude) + "\")&")#.read()
 		os.system(my_command)

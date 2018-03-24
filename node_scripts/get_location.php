@@ -1,34 +1,37 @@
 <?php
+$file = file_get_contents('http://www.unertech.com/fox_ears/data.json');
 
-$file = file_get_contents('data.json');
-
-//load in the data from the file
-
+// //load in the data from the file
 $data = json_decode($file, true);
 
-$first , $second, $third = array("lattitude" => 0,"longitude" => 0,"time" => 0,"amplitude" => 0);
+// echo json_encode($data);
+
+$first = array("lattitude" => 0,"longitude" => 0,"time" => 0,"amplitude" => 0);
+$second  = array("lattitude" => 0,"longitude" => 0,"time" => 0,"amplitude" => 0);
+$third  = array("lattitude" => 0,"longitude" => 0,"time" => 0,"amplitude" => 0);
 
 foreach($data as $key => $value) {
-    $element = json_decode($value, true);
-    $amp = $element["amplitude"];
+    // $element = json_decode($value, true);
+    $amp = $value["amplitude"];
+    // echo "AMP: " . $amp . "<br>";
     if($first["amplitude"] < $amp) {
         $third = $second;
         $second = $first;
-        $first = $element;
+        $first = $value;
     }
 
     elseif($second["amplitude"] < $amp) {
         $third = $second;
-        $second = $element;
+        $second = $value;
     }
 
     elseif($third["amplitude"] < $amp) {
-        $third = $element;
+        $third = $value;
     }
 }
-echo $first;
-echo $second;
-echo $third;
+// echo json_encode($first);
+// echo json_encode($second);
+// echo $third["time"];
 
 // define the points
 $A = [$first["lattitude"],$first["longitude"]];
@@ -78,9 +81,9 @@ $abp_bcp_x = ($ab_yp[1] - $bc_yp[1])/($bc_yp[0] - $ab_yp[0]);
 $bcp_cap_x = ($bc_yp[1] - $ca_yp[1])/($ca_yp[0] - $bc_yp[0]);
 $cap_abp_x = ($ca_yp[1] - $ab_yp[1])/($ab_yp[0] - $ca_yp[0]);
 
-$abp_bcp_y = $abp_bcp_x * ($ab_yp[0] + $ab_yp[1]);
-$bcp_cap_y = $bcp_cap_x * ($bc_yp[0] + $bc_yp[1]);
-$cap_abp_y = $cap_abp_x * ($ca_yp[0] + $ca_yp[1]);
+$abp_bcp_y = $abp_bcp_x * $ab_yp[0] + $ab_yp[1];
+$bcp_cap_y = $bcp_cap_x * $bc_yp[0] + $bc_yp[1];
+$cap_abp_y = $cap_abp_x * $ca_yp[0] + $ca_yp[1];
 
 $final_x = ($abp_bcp_x + $bcp_cap_x + $cap_abp_x)/3;
 $final_y = ($abp_bcp_y + $bcp_cap_y + $cap_abp_y)/3;
