@@ -37,8 +37,11 @@
 		fwrite($file, $json_arr);
 		fclose($file);
 	}
-	$node = $_GET["node"];
-	$time = $_GET["time"];
-	$amplitude = $_GET["amp"];
+	// $node = $_GET["node"];
+	// $time = $_GET["time"];
+	// $amplitude = $_GET["amp"];
+	$node = "ann";
+	$time = "289543";
+	$amplitude = "1123";
 	retrieve_write($node, $time, $amplitude);
 ?>

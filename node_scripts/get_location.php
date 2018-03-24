@@ -55,7 +55,7 @@ $cap_abp_y = $cap_abp_x * ($ca_yp[0] + $ca_yp[1]);
 $final_x = ($abp_bcp_x + $bcp_cap_x + $cap_abp_x)/3;
 $final_y = ($abp_bcp_y + $bcp_cap_y + $cap_abp_y)/3;
 
-return [$final_x, $final_y];
+echo json_encode([$final_x, $final_y]);
 
 
 ?>
