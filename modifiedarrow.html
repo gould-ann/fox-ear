@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+//math stuff
+var pi = 3.14159;
+var inputX1 = 0;
+var inputY1 = 0;
+var inputX2 = 30;
+var inputY2 = 50;
+console.log("here");
+var theta = Math.atan((inputY1-inputY2) / (inputX1-inputX2));  //radian value of sound location
+var polA = theta - pi/3 + pi;
+var polB = polA + (2/3)*pi;
+var polC = 0;
+var polD = polB + (2/3)*pi;
+
+//calculating positions
+var a = [-125 * Math.cos(polA) + 250,125 * Math.sin(polA) + 250];
+var b = [-125 * Math.cos(polB) + 250,125 * Math.sin(polB) + 250];
+var c = [250,250];
+var d = [-125 * Math.cos(polA) + 250,125 * Math.sin(polA) + 250];
+//drawing the arrow
+ctx.moveTo(a[0],a[1]);
+ctx.lineTo(b[0],b[1]);
+ctx.lineTo(c[0],c[1]);
+ctx.lineTo(d[0],d[1]);
+ctx.lineTo(a[0],a[1]);
+ctx.stroke();
+</script>
+
+</body>
+</html>
