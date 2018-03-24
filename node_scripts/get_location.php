@@ -1,10 +1,40 @@
 <?php
 
+$file = file_get_contents('data.json');
+
+//load in the data from the file
+
+$data = json_decode($file, true);
+
+$first , $second, $third = array("lattitude" => 0,"longitude" => 0,"time" => 0,"amplitude" => 0);
+
+foreach($data as $key => $value) {
+    $element = json_decode($value, true);
+    $amp = $element["amplitude"];
+    if($first["amplitude"] < $amp) {
+        $third = $second;
+        $second = $first;
+        $first = $element;
+    }
+
+    elseif($second["amplitude"] < $amp) {
+        $third = $second;
+        $second = $element;
+    }
+
+    elseif($third["amplitude"] < $amp) {
+        $third = $element;
+    }
+}
+echo $first;
+echo $second;
+echo $third;
+
 // define the points
-$A = [0,0];
-$B = [3,3];
-$C = [10,1];
-$times = [3,2,1];
+$A = [$first["lattitude"],$first["longitude"]];
+$B = [$second["lattitude"],$second["longitude"]];
+$C = [$third["lattitude"],$third["longitude"]];
+$times = [$first["time"],$second["time"],$third["time"]];
 
 // step one! calculate relative distances between time
 $time_ab = $times[0] / ($times[0] + $times[1]);
