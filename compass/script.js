@@ -43,3 +43,25 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.open("GET", theUrl, true); // true for asynchronous 
     xmlHttp.send(null);
 }
+
+  // Obtain a new *world-oriented* Full Tilt JS DeviceOrientation Promise
+  function direction(){
+    var promise = FULLTILT.getDeviceOrientation({ 'type': 'world' });
+    // Wait for Promise result
+    promise.then(function(deviceOrientation) { // Device Orientation Events are supported
+      // Register a callback to run every time a new 
+      // deviceorientation event is fired by the browser.
+      deviceOrientation.listen(function() {
+        // Get the current *screen-adjusted* device orientation angles
+        var currentOrientation = deviceOrientation.getScreenAdjustedEuler();
+        // Calculate the current compass heading that the user is 'looking at' (in degrees)
+        var compassHeading = 360 - currentOrientation.alpha;
+        document.getElementById("direction_out").innerHTML = json_encode(compassHeading);
+        // Do something with `compassHeading` here...
+      });
+    }).catch(function(errorMessage) { // Device Orientation Events are not supported
+      console.log(errorMessage);
+      document.getElementById("direction_out").innerHTML = errorMessage;
+      // Implement some fallback controls here...
+    });    
+  }
