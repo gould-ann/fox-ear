@@ -1,4 +1,5 @@
 class Position:
+    maxNode
     nodes = []
     maxInten = 0
 
@@ -9,8 +10,9 @@ class Position:
             if node.getInten > self.maxInten
             maxNode = index
         
-        
-        self.nodes.pop(index)
+
+        maxNode = self.nodes.pop(index)
 
     def calculatePos(self):
         for node in self.nodes
+        

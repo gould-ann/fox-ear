@@ -1,9 +1,10 @@
 class Node:
     xPos = 0
     yPos = 0
-    intensity = 0
+    amp = 0
+    time = 0
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, amp, time):
         self.xPos = x
         self.yPos = y
 
@@ -13,8 +14,14 @@ class Node:
     def getY(self):
         return self.yPos
 
-    def getInten(self):
-        return self.intensity
+    def getAmp(self):
+        return self.amp
 
-    def setInten(self, inten):
-        self.intensity = inten
+    def getTime(self):
+        return self.amp
+    
+    def setAmp(self, amp):
+        self.amp = amp
+
+    def setTime(self, time):
+        self.time = time
