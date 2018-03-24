@@ -15,11 +15,20 @@
 	//creates json file based off of provided latitude longitude time and amp
 	//url encode amplitude with 'amp' 
 	function retrieve_write($node, $time, $amplitude){
+
+		// open the current file
+		$file = file_get_contents('data.json');
+		//load in the data from the file
+		$data = json_decode($file, true);
+
+
+		// get the lat and long from the node name
 		$lat_long = json_decode(find_node($node), true);
 
-		$assoc_array = array("lattitude"=>$lat_long["latitude"], "longitude"=> $lat_long["logitude"], "time"=>$time, "amplitude"=>$amplitude);
+		// add in the new data to the old data
+		$data[$node] = array("lattitude"=>$lat_long["latitude"], "longitude"=> $lat_long["logitude"], "time"=>$time, "amplitude"=>$amplitude);
 		// echo $arr;
-		$json_arr = json_encode($assoc_array);
+		$json_arr = json_encode($data);
 		$json_arr = $json_arr;
 		echo $json_arr;
 		$json = $_POST['json'];
