@@ -1,5 +1,5 @@
-import plotly.plotly as py
-import plotly.graph_objs as go
+# import plotly.plotly as py
+# import plotly.graph_objs as go
 import wave
 import numpy as np
 import math
@@ -137,7 +137,7 @@ for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
 for i in all_examples:
 	print i
 
-plot_x_y(time_x,[freq_array, amp_array])
+# plot_x_y(time_x,[freq_array, amp_array])
 print("* done recording")
 
 stream.stop_stream()
