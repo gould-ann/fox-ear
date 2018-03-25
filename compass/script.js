@@ -11,13 +11,14 @@ function getOutput() {
 setInterval(getOutput, 1000);
 
 // handles the response, adds the html
+var location_of_loud = [0,0];
 function drawOutput(responseText) {
   console.log(responseText);
     var container = document.getElementById('out');
     container.innerHTML = responseText;
+    location_of_loud = json_decode(responseText);
 }
 // helper function for cross-browser request object
-
 var x = document.getElementById("coordinates");
 
 function getLocation() {
@@ -26,13 +27,17 @@ function getLocation() {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-    // setInterval(getLocation, 2000);
+    
 }
+window.setInterval(getLocation, 100);
+
 
 function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
 }
+
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -117,4 +122,4 @@ function httpGetAsync(theUrl, callback)
 
 
 direction();
-setInterval(function() {foo_canvas(41.997619,-93.632238,42.000436,-93.630654)}, 100);
+setInterval(function() {foo_canvas(41.997619,-93.632238,location_of_loud[0],location_of_loud[1])}, 100);

@@ -3,7 +3,7 @@
 <body onload="getLocation()">
 
 
-<p id="coordinates"></p>
+<p id="coordinates">asdsad</p>
 
 <script>
 var x = document.getElementById("coordinates");
@@ -14,9 +14,9 @@ function getLocation() {
     } else { 
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-    window.setInterval(getLocation, 100);
+    
 }
-
+window.setInterval(function() {getLocation(); console.log("a");}, 100);
 function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;

@@ -26,7 +26,7 @@
 		$lat_long = json_decode(find_node($node), true);
 
 		// add in the new data to the old data
-		$data[$node] = array("lattitude"=>$lat_long["latitude"], "longitude"=> $lat_long["logitude"], "time"=>$time, "amplitude"=>$amplitude);
+		$data[$node] = array("lattitude"=>$lat_long["latitude"], "longitude"=> $lat_long["logitude"], "time"=>$time, "amplitude"=>json_decode($amplitude));
 		// echo $arr;
 		$json_arr = json_encode($data);
 		$json_arr = $json_arr;
