@@ -1,4 +1,5 @@
 function getOutput() {
+  // window.alert("responseText");
   httpGetAsync(
       'http://www.unertech.com/fox_ears/get_location.php', // URL for the PHP file
        drawOutput  // handle successful request
@@ -13,7 +14,7 @@ setInterval(getOutput, 1000);
 // handles the response, adds the html
 var location_of_loud = [0,0];
 function drawOutput(responseText) {
-  console.log(responseText);
+  // window.alert(responseText);
     var container = document.getElementById('out');
     container.innerHTML = responseText;
     location_of_loud = json_decode(responseText);
@@ -29,7 +30,7 @@ function getLocation() {
     }
     
 }
-window.setInterval(getLocation, 100);
+// window.setInterval(getLocation, 100);
 
 
 function showPosition(position) {
@@ -122,4 +123,6 @@ function httpGetAsync(theUrl, callback)
 
 
 direction();
+// getLocation();
 setInterval(function() {foo_canvas(41.997619,-93.632238,location_of_loud[0],location_of_loud[1])}, 100);
+setInterval(function() {getLocation();},1000);
