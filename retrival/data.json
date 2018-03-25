@@ -1,1 +1,29 @@
-{}
+{
+    "A" : {
+        "lattitude": 2,
+        "longitude": 0,
+        "time": 1521972605.343,
+        "amplitude": 12
+    },
+
+    "B" : {
+        "lattitude": 4,
+        "longitude": -4,
+        "time": 1521972605.686,
+        "amplitude": 9
+    },
+
+    "C" : {
+        "lattitude": -1,
+        "longitude": -2,
+        "time": 1521972606.029,
+        "amplitude": 10
+    },
+
+    "D" : {
+        "lattitude": 3,
+        "longitude": 6,
+        "time": 1521972607.343,
+        "amplitude":6
+    }
+}
