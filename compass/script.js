@@ -63,5 +63,38 @@ function httpGetAsync(theUrl, callback)
       console.log(errorMessage);
       document.getElementById("direction_out").innerHTML = errorMessage;
       // Implement some fallback controls here...
-    });    
+    });
+    setInterval(direction, 1000);    
+  }
+
+  function canvas(my_loc_x, my_loc_y, loud_x, loud_y){
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+    //math stuff
+    var pi = 3.14159;
+    var inputX1 = 0;
+    var inputY1 = 0;
+    var inputX2 = 30;
+    var inputY2 = 50;
+    console.log("here");
+    var theta = Math.atan((inputY1-inputY2) / (inputX1-inputX2));  //radian value of sound location
+    var polA = theta - pi/3 + pi;
+    var polB = polA + (2/3)*pi;
+    var polC = 0;
+    var polD = polB + (2/3)*pi;
+
+    //calculating positions
+    var a = [-125 * Math.cos(polA) + 250,125 * Math.sin(polA) + 250];
+    var b = [-125 * Math.cos(polB) + 250,125 * Math.sin(polB) + 250];
+    var c = [250,250];
+    var d = [-125 * Math.cos(polA) + 250,125 * Math.sin(polA) + 250];
+    //drawing the arrow
+    ctx.moveTo(a[0],a[1]);
+    ctx.lineTo(b[0],b[1]);
+    ctx.lineTo(c[0],c[1]);
+    ctx.lineTo(d[0],d[1]);
+    ctx.lineTo(a[0],a[1]);
+    ctx.stroke();
+    setInterval(canvas, 1000);
   }
